@@ -4,11 +4,19 @@
 <mapper namespace="com.dao.StringkeypoolinfoDAO">		
 	
 	<insert id="saveNewStringKey" parameterType="com.dto.StringkeypoolinfoTDTO">
-			INSERT INTO `kakao`.`stringkeypoolinfo`
-			(`StrKeyNum`,
-			`keyRgtTimeStamp`)
+			INSERT INTO kakao.stringkeypoolinfo
+			(`StrKeyNum`)
 			VALUES
-			(#{StrKeyNum},
-			#{keyRgtTimeStamp});
+			(#{StrKeyNum})
 	</insert>	
+
+	<delete id="clearNewStringKey" >
+			DELETE FROM kakao.stringkeypoolinfo
+			
+	</delete>	
+	
+	<select id="getNewStringKey" parameterType="long" resultType="com.dto.StringkeypoolinfoTDTO">
+			SELECT  * FROM kakao.stringkeypoolinfo WHERE keySeq >#{keySeq} ORDER BY keySeq LIMIT 1
+	</select>	
+	
 </mapper>

@@ -16,7 +16,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/dao/KeyMstDAO.xml"/>	
+		<mapper resource="com/dao/KeyMstDAO.xml"/>			
 		<mapper resource="com/dao/KeyhistinfoDAO.xml"/>
 		<mapper resource="com/dao/StringkeypoolinfoDAO.xml"/>		
 	</mappers>

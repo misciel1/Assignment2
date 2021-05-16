@@ -32,11 +32,11 @@ public class KeyAppTest3 {
 		
 		
 			
-			/*KEY발급*/
-			keyMgmtPC.makeStringKey();
+			/*문자키KEY생성*/
+			keyMgmtPC.makeStringKey(500000);
 			
 			/*결과출력*/
-			System.out.println("New key is : "+newkey);
+			System.out.println("Completed");
 		
 		
 	}

@@ -3,6 +3,7 @@ package com.ec;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 
 import com.ec.KeyGenricGenEC;
 import com.dao.KeyMstDAO;
@@ -12,27 +13,32 @@ import com.dto.KeyMstTDTO;
 import com.dto.KeyhistinfoTDTO;
 import com.dto.StringkeypoolinfoTDTO;
 import com.session.KeySessionFactory;
+import com.uc.KeyNumHandlerUC;
 
 public class KeyFactoryEC {
 
-	
+	final static Logger loggoer = Logger.getLogger(KeyFactoryEC.class);	
 
 	public String getNewKey(String keyBizCfcd){
 			
 			
 		
-			KeyGenricGenEC keyGenricGenEC = new KeyGenricGenEC();
+			
 			KeySessionFactory fac = new KeySessionFactory();
 			SqlSession session = fac.openSession(false);	
 			KeyMstDAO mapper = session.getMapper(KeyMstDAO.class);
+			
+			KeyGenricGenEC keyGenricGenEC = new KeyGenricGenEC();
+			StringKeyGenEC StringKeyGenEC = new StringKeyGenEC();
 			
 			String newKey = "";
 			String type = "";
 			String genCfcd = "";
 			String keyPrifix = "";
+			String lstKeyNum = "";
 			int keyLen = 0;
 			long lstKeySeq = 0;
-			String lstKeyNum = "";
+			
 			
 			
 			
@@ -65,7 +71,7 @@ public class KeyFactoryEC {
 			 //KEY발급방식
 			 if("01".equals(type)) //문자형 
 			 {
-				 
+				 newKey = StringKeyGenEC.makeGenricKey(keyBizCfcd,keyPrifix, lstKeySeq);
 			 }	 
 			 else if("02".equals(type))//숫자형+MysqlKeyGenerator
 			 {
@@ -89,6 +95,7 @@ public class KeyFactoryEC {
 		KeySessionFactory fac = new KeySessionFactory();
 		SqlSession session = fac.openSession(false);	
 		KeyMstDAO mapper = session.getMapper(KeyMstDAO.class);
+			
 		
 		mapper.updateLstKeyInfo(lstKeyNum,keyBizCfcd);
 		session.commit();
@@ -110,17 +117,34 @@ public class KeyFactoryEC {
 	}
 
 	
-	public  void saveNewStringKey(StringkeypoolinfoTDTO stringkeypoolinfoTDTO){
+	public  void saveNewStringKey(List<StringkeypoolinfoTDTO> stringkeypoolinfoPTDTO){
 		
 		KeySessionFactory fac = new KeySessionFactory();
 		SqlSession session = fac.openSession(false);	
 		StringkeypoolinfoDAO mapper = session.getMapper(StringkeypoolinfoDAO.class);
 		
-		mapper.saveNewStringKey (stringkeypoolinfoTDTO);
+		/*초기화*/
+		mapper.clearNewStringKey();
+	
+		int cnt = stringkeypoolinfoPTDTO.size();
+		
+		/*저장*/
+		for(int i = 0;cnt>i;i++)
+		{	
+			StringkeypoolinfoTDTO stringkeypoolinfoTDTO = new StringkeypoolinfoTDTO();
+			stringkeypoolinfoTDTO = stringkeypoolinfoPTDTO.get(i);
+			
+						
+			mapper.saveNewStringKey (stringkeypoolinfoTDTO);						
+			
+			if(i%5000==0)
+			{
+				if(loggoer.isInfoEnabled()) loggoer.info("StrKeyNum : "+stringkeypoolinfoTDTO.getStrKeyNum()+"   cnt : "+i);
+				session.commit();
+			}	
+		}
 		session.commit();
 		session.close();
-	
-		
 	}
 	
 }

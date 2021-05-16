@@ -47,13 +47,16 @@ public class KeyMgmtPC {
 	}
 	
 	
-	public void  makeStringKey() throws Exception{
+	public void  makeStringKey(long uptoCnt) throws Exception{
 		
 		List<StringkeypoolinfoTDTO> stringkeypoolinfoPTDTO = new ArrayList<StringkeypoolinfoTDTO>();
 	    StringkeypoolinfoTDTO stringkeypoolinfoTDTO = new StringkeypoolinfoTDTO(); 
 		
-		KeyNumHandlerUC keyNumHandlerUC = new KeyNumHandlerUC();		
-		stringkeypoolinfoPTDTO = keyNumHandlerUC.generateKey();
+	    KeyFactoryEC keyFactoryEC = new KeyFactoryEC();	
+		KeyNumHandlerUC keyNumHandlerUC = new KeyNumHandlerUC();
+		
+		stringkeypoolinfoPTDTO = keyNumHandlerUC.generateKey(uptoCnt);
+		keyFactoryEC.saveNewStringKey(stringkeypoolinfoPTDTO);
 		
 	
 	}

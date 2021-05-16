@@ -4,8 +4,14 @@ import com.dto.StringkeypoolinfoTDTO;
 
 public interface StringkeypoolinfoDAO {
 		
-		/*key이력정보저장 */	
+		/*문자형 KEY저장 */	
 		void saveNewStringKey (final StringkeypoolinfoTDTO stringkeypoolinfoTDTO);
+		
+		/*삭제*/
+		void clearNewStringKey();
+		
+		/*문자형Key에서 신규키조회*/
+		StringkeypoolinfoTDTO getNewStringKey (final long keySeq);
 }
 
 

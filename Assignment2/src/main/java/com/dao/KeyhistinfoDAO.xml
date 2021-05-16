@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.KeyhistInfoDAO">		
+	
+	<insert id="saveNewKeyHist" parameterType="com.dto.KeyhistinfoTDTO">
+			INSERT INTO `kakao`.`keyhistinfo`
+			(`keyBizCfcd`,
+			`keyNum`,
+			`systemName`,			
+			`systemUsedIP`)
+			VALUES
+			(#{keyBizCfcd},
+			#{keyNum},
+			#{systemName},		
+			#{systemUsedIP});
+	</insert>	
+</mapper>

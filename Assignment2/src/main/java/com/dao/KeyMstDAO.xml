@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.KeyMstDAO">
+	
+	<select id="getKeyMstInfo" parameterType="String" resultType="com.dto.KeyMstTDTO">
+			SELECT * 
+			FROM kakao.keymst 
+			WHERE CURRENT_DATE BETWEEN applBgdt AND applEnddt 
+			   AND keyBizCfcd = #{keyBizCfcd} 
+	</select>
+	
+	<update id="updateLstKeyNum">
+			UPDATE kakao.keymst
+			SET lstKeyNum = lstKeyNum + 1 
+			WHERE CURRENT_DATE BETWEEN applBgdt AND applEnddt 
+			   AND keyBizCfcd = #{keyBizCfcd} 
+	</update>
+</mapper>

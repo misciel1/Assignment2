@@ -10,10 +10,33 @@
 			   AND keyBizCfcd = #{keyBizCfcd} 
 	</select>
 	
-	<update id="updateLstKeyNum">
-			UPDATE kakao.keymst
-			SET lstKeyNum = lstKeyNum + 1 
+	<select id="getKeyMstInfo" parameterType="String" resultType="com.dto.KeyMstTDTO">
+			SELECT * 
+			FROM kakao.keymst 
 			WHERE CURRENT_DATE BETWEEN applBgdt AND applEnddt 
 			   AND keyBizCfcd = #{keyBizCfcd} 
+	</select>
+	
+	
+	<update id="updateLstKeyInfo">
+			UPDATE kakao.keymst
+			SET lstKeySeq = lstKeySeq + 1 
+			   ,lstKeyNum = #{param1}
+			WHERE CURRENT_DATE BETWEEN applBgdt AND applEnddt 
+			   AND keyBizCfcd = #{param2} 
 	</update>
+	
+	
+	<insert id="saveNewKeyHist" parameterType="com.dto.KeyMstTDTO">
+			INSERT INTO `kakao`.`keyhistinfo`
+			(`keyBizCfcd`,
+			`keyNum`,
+			`systemName`,			
+			`systemUsedIP`)
+			VALUES
+			(#{keyBizCfcd},
+			#{keyNum},
+			#{systemName},		
+			#{systemUsedIP});
+	</insert>	
 </mapper>

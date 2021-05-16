@@ -6,7 +6,11 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.ec.KeyGenricGenEC;
 import com.dao.KeyMstDAO;
+import com.dao.KeyhistInfoDAO;
+import com.dao.StringkeypoolinfoDAO;
 import com.dto.KeyMstTDTO;
+import com.dto.KeyhistinfoTDTO;
+import com.dto.StringkeypoolinfoTDTO;
 import com.session.KeySessionFactory;
 
 public class KeyFactoryEC {
@@ -27,7 +31,8 @@ public class KeyFactoryEC {
 			String genCfcd = "";
 			String keyPrifix = "";
 			int keyLen = 0;
-			long lstKeyNum = 0;
+			long lstKeySeq = 0;
+			String lstKeyNum = "";
 			
 			
 			
@@ -47,7 +52,7 @@ public class KeyFactoryEC {
 					 genCfcd = keyMstPTDTO.get(0).getGenCfcd();
 					 keyLen =  keyMstPTDTO.get(0).getKeyLen();
 			    	 keyPrifix = keyMstPTDTO.get(0).getKeyPrifix();
-			    	 lstKeyNum = keyMstPTDTO.get(0).getLstKeyNum();
+			    	 lstKeySeq = keyMstPTDTO.get(0).getLstKeySeq();
 			    	 
 				 }
 			 } 
@@ -64,33 +69,58 @@ public class KeyFactoryEC {
 			 }	 
 			 else if("02".equals(type))//숫자형+MysqlKeyGenerator
 			 {
-				 
+				 newKey = keyGenricGenEC.makeGenricKey(keyBizCfcd,genCfcd,keyPrifix,keyLen,lstKeySeq);
 			 }	
 			 else if("03".equals(type))//숫자형+GnericKeyGenerator
 			 {				 
-				 newKey = keyGenricGenEC.makeGenricKey(keyBizCfcd,genCfcd,keyPrifix,keyLen,lstKeyNum);
+				 newKey = keyGenricGenEC.makeGenricKey(keyBizCfcd,genCfcd,keyPrifix,keyLen,lstKeySeq);
 				
 			 }
 			 
-			 
-			 
+			 			 
 				
 		
 			 return newKey;	
 	}
 	
 	
-	public void updateLstKeynum(String keyBizCfcd){
+	public void updateLstKeynum(String lstKeyNum,String keyBizCfcd){
 		
 		KeySessionFactory fac = new KeySessionFactory();
 		SqlSession session = fac.openSession(false);	
 		KeyMstDAO mapper = session.getMapper(KeyMstDAO.class);
 		
-		mapper.updateLstKeyNum(keyBizCfcd);
+		mapper.updateLstKeyInfo(lstKeyNum,keyBizCfcd);
+		session.commit();
+	
+		
+	}
+	
+	public  void saveNewKeyHist(KeyhistinfoTDTO keyhistinfoTDTO){
+		
+		KeySessionFactory fac = new KeySessionFactory();
+		SqlSession session = fac.openSession(false);	
+		KeyhistInfoDAO mapper = session.getMapper(KeyhistInfoDAO.class);
+		
+		mapper.saveNewKeyHist (keyhistinfoTDTO);
 		session.commit();
 		session.close();
+	
 		
 	}
 
+	
+	public  void saveNewStringKey(StringkeypoolinfoTDTO stringkeypoolinfoTDTO){
+		
+		KeySessionFactory fac = new KeySessionFactory();
+		SqlSession session = fac.openSession(false);	
+		StringkeypoolinfoDAO mapper = session.getMapper(StringkeypoolinfoDAO.class);
+		
+		mapper.saveNewStringKey (stringkeypoolinfoTDTO);
+		session.commit();
+		session.close();
+	
+		
+	}
 	
 }

@@ -10,7 +10,10 @@ public class KeyMstTDTO {
 	private int keyLen;
 	private String type;
 	private String genCfcd;
-	private long lstKeyNum;
+	private long lstKeySeq;
+	private String lstKeyNum;
+	
+	
 	
 	public String getKeyBizCfcd() {
 		return keyBizCfcd;
@@ -60,16 +63,20 @@ public class KeyMstTDTO {
 	public void setGenCfcd(String genCfcd) {
 		this.genCfcd = genCfcd;
 	}
-	public long getLstKeyNum() {
+	public long getLstKeySeq() {
+		return lstKeySeq;
+	}
+	public void setLstKeySeq(long lstKeySeq) {
+		this.lstKeySeq = lstKeySeq;
+	}
+	public String getLstKeyNum() {
 		return lstKeyNum;
 	}
-	public void setLstKeyNum(long lstKeyNum) {
+	public void setLstKeyNum(String lstKeyNum) {
 		this.lstKeyNum = lstKeyNum;
 	}
 	
 	
-
-
 	
 
 

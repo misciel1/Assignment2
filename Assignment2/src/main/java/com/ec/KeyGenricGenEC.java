@@ -1,11 +1,17 @@
 package com.ec;
 
 import java.util.Calendar;
+
+import org.apache.log4j.Logger;
+
+import com.app.KeyAppTest2;
 import com.uc.KeyNumHandlerUC;
 
 public class KeyGenricGenEC {
 	
-	public String makeGenricKey(String keyBizCfcd,String genCfcd,String keyPrifix,int keyLen,long lstKeyNum){
+	final static Logger loggoer = Logger.getLogger(KeyGenricGenEC.class);
+	
+	public String makeGenricKey(String keyBizCfcd,String genCfcd,String keyPrifix,int keyLen,long lstKeySeq){
 	
 		KeyNumHandlerUC keyNumHandlerUC = new KeyNumHandlerUC();
 		
@@ -20,7 +26,7 @@ public class KeyGenricGenEC {
 		{
 			
 			 prifixKeyNum = keyPrifix+String.valueOf(thisYear).substring(2, 4);			 
-			 postKeyNum = keyNumHandlerUC.makeNewKeyNum(keyLen,lstKeyNum);
+			 postKeyNum = keyNumHandlerUC.makeNewKeyNum(keyLen,lstKeySeq);
 			 
 			 newKey = prifixKeyNum + postKeyNum;
 			 
@@ -30,7 +36,7 @@ public class KeyGenricGenEC {
 		{
 			
 			 prifixKeyNum = keyPrifix+String.valueOf(thisYear);			 
-			 postKeyNum = keyNumHandlerUC.makeNewKeyNum(keyLen,lstKeyNum);
+			 postKeyNum = keyNumHandlerUC.makeNewKeyNum(keyLen,lstKeySeq);
 			 
 			 newKey = prifixKeyNum + postKeyNum;
 			 
@@ -39,10 +45,12 @@ public class KeyGenricGenEC {
 		else
 		{
 			 prifixKeyNum = keyPrifix;			 
-			 postKeyNum = keyNumHandlerUC.makeNewKeyNum(keyLen,lstKeyNum);
+			 postKeyNum = keyNumHandlerUC.makeNewKeyNum(keyLen,lstKeySeq);
 			 
 			 newKey = prifixKeyNum + postKeyNum;
-			
+			 
+			 //if(loggoer.isInfoEnabled()) loggoer.info("prifixKeyNum : "+prifixKeyNum);
+			 //if(loggoer.isInfoEnabled()) loggoer.info("postKeyNum : "+postKeyNum);
 		}	
 	
 		

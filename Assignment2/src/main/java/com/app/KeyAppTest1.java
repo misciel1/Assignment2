@@ -42,10 +42,11 @@ public class KeyAppTest1 {
 			userInfoDTO.setSystemUsedIP(address.getHostAddress());		
 			
 			/*KEY발급*/
-			newkey = keyMgmtPC.issueNewKey("CL01",userInfoDTO);
+			newkey = keyMgmtPC.issueNewKey("CT01",userInfoDTO);
 			
 			/*결과출력*/
 			System.out.println("New key is : "+newkey);
+			System.out.println("Compeleted");
 		
 		
 	}

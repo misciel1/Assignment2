@@ -33,7 +33,7 @@ public class KeyAppTest3 {
 		
 			
 			/*문자키KEY생성*/
-			keyMgmtPC.makeStringKey(500000);
+			keyMgmtPC.makeStringKey(3000000);
 			
 			/*결과출력*/
 			System.out.println("Completed");

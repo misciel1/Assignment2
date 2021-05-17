@@ -15,7 +15,7 @@ public interface KeyMstDAO {
 	void updateLstKeyInfo(String lstKeyNum, String keyBizCfcd);
 	
 	/*key정보입력 */	
-	//void rigsterNewKeyInfo (final KeyMstTDTO keyMstTDTO);
+	void rigsterNewKeyInfo (final KeyMstTDTO keyMstTDTO);
 	
 		
 

@@ -4,7 +4,7 @@
 <mapper namespace="com.dao.KeyhistInfoDAO">		
 	
 	<insert id="saveNewKeyHist" parameterType="com.dto.KeyhistinfoTDTO">
-			INSERT INTO `kakao`.`keyhistinfo`
+			INSERT INTO `kakao`.`key_hist_info`
 			(`keyBizCfcd`,
 			`keyNum`,
 			`systemName`,			

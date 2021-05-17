@@ -47,6 +47,15 @@ public class KeyMgmtPC {
 	}
 	
 	
+	public void  rigsterNewKeyInfo(KeyMstTDTO keyMstTDTO) throws Exception{
+		
+		
+	    KeyFactoryEC keyFactoryEC = new KeyFactoryEC();			
+		keyFactoryEC.rigsterNewKeyInfo(keyMstTDTO);
+		
+	
+	}
+	
 	public void  makeStringKey(long uptoCnt) throws Exception{
 		
 		List<StringkeypoolinfoTDTO> stringkeypoolinfoPTDTO = new ArrayList<StringkeypoolinfoTDTO>();
@@ -60,5 +69,7 @@ public class KeyMgmtPC {
 		
 	
 	}
+	
+	
 
 }

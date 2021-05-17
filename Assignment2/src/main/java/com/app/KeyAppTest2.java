@@ -49,7 +49,7 @@ public class KeyAppTest2 implements Runnable {
 				t.join(); // 쓰레드의 처리가 끝날때까지 기다립니다.
 			}
 			
-			System.out.println("End");
+			System.out.println("Compeleted");
 		
 	}
 	

@@ -5,7 +5,7 @@
 	
 	<select id="getKeyMstInfo" parameterType="String" resultType="com.dto.KeyMstTDTO">
 			SELECT * 
-			FROM kakao.keymst 
+			FROM kakao.key_mst 
 			WHERE CURRENT_DATE BETWEEN applBgdt AND applEnddt 
 			   AND keyBizCfcd = #{keyBizCfcd} 
 	</select>
@@ -13,13 +13,36 @@
 
 	
 	<update id="updateLstKeyInfo">
-			UPDATE kakao.keymst
+			UPDATE kakao.key_mst
 			SET lstKeySeq = lstKeySeq + 1 
 			   ,lstKeyNum = #{param1}
 			WHERE CURRENT_DATE BETWEEN applBgdt AND applEnddt 
 			   AND keyBizCfcd = #{param2} 
 	</update>
 	
-	
+	<insert id="rigsterNewKeyInfo" parameterType="com.dto.KeyMstTDTO" >
+		INSERT INTO kakao.key_mst
+			(`keyBizCfcd`,
+			`applBgdt`,
+			`applEnddt`,
+			`keyPrifix`,
+			`keyDesc`,
+			`keyLen`,
+			`type`,
+			`genCfcd`,
+			`lstKeySeq`,
+			`lstKeyNum`)
+			VALUES
+			(#{keyBizCfcd},
+			#{applBgdt},
+			#{applEnddt},
+			#{keyPrifix},
+			#{keyDesc},
+			#{keyLen},
+			#{type},
+			#{genCfcd},
+			#{lstKeySeq},
+			#{lstKeyNum})
+	</insert>
 
 </mapper>

@@ -103,6 +103,19 @@ public class KeyFactoryEC {
 		
 	}
 	
+	public  void rigsterNewKeyInfo(KeyMstTDTO keyMstTDTO){
+		
+		KeySessionFactory fac = new KeySessionFactory();
+		SqlSession session = fac.openSession(false);	
+		KeyMstDAO mapper = session.getMapper(KeyMstDAO.class);
+		
+		mapper.rigsterNewKeyInfo (keyMstTDTO);
+		session.commit();
+		session.close();
+	
+		
+	}
+		
 	public  void saveNewKeyHist(KeyhistinfoTDTO keyhistinfoTDTO){
 		
 		KeySessionFactory fac = new KeySessionFactory();

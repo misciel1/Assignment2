@@ -112,7 +112,21 @@ KEY_MST만으로 KEY발급이 가능함(단독만으로 운영시 속도에 유�
 
 ## 7. 단위테스트 및 결과
 
+단위 테스트는 "src\main\java\com\app" 폴더 아래에 있는 파일들을 실행
+
+제공되는 단위 테스트 파일은 아래와 같음
+
+KeyAppTest1.java : 신규KEY발급테스트- 숫자형Gneric
+KeyAppTest2.java : 신규KEY발급테스트- 숫자형MySql
+KeyAppTest3.java : 신규KEY발급테스트- 문자형
+KeyAppTest7.java : 멀티스레드 기반 테스트
+KeyAppTest8.java : 문자형KEY일괄생성 테스트
+KeyAppTest9.java : 새로운 KEY정보 등록 테스트
+
 
 
 ## 7. 빌드 및 실행방법
+
+
+[DB백업 링크] https://drive.google.com/file/d/1aQ0rE6xr_UlI_aR71_LkMTTlPO_oPMP3/view?usp=sharing
 ## 8. 구현시 고민 및 제약

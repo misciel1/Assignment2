@@ -22,6 +22,7 @@
   
 ## 3. DB구성
 ### 3-1. 데이터모델
+![ERD](https://user-images.githubusercontent.com/84136543/118784212-c997b780-b8ca-11eb-88bf-730368bc60c9.PNG)
 + 데이터모델
 ### 3-2. 테이블
 + KEY_MST

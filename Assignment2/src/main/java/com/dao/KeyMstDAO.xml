@@ -23,6 +23,7 @@
 	<insert id="rigsterNewKeyInfo" parameterType="com.dto.KeyMstTDTO" >
 		INSERT INTO kakao.key_mst
 			(`keyBizCfcd`,
+			`chtms`,
 			`applBgdt`,
 			`applEnddt`,
 			`keyPrifix`,
@@ -34,6 +35,7 @@
 			`lstKeyNum`)
 			VALUES
 			(#{keyBizCfcd},
+			#{chtms},
 			#{applBgdt},
 			#{applEnddt},
 			#{keyPrifix},

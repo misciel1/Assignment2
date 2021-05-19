@@ -3,6 +3,7 @@ package com.dto;
 public class KeyMstTDTO {
 
 	private String keyBizCfcd;
+	private String chtms;
 	private String applBgdt;
 	private String applEnddt;
 	private String keyPrifix;
@@ -20,6 +21,12 @@ public class KeyMstTDTO {
 	}
 	public void setKeyBizCfcd(String keyBizCfcd) {
 		this.keyBizCfcd = keyBizCfcd;
+	}
+	public String getChtms() {
+		return chtms;
+	}
+	public void setChtms(String chtms) {
+		this.chtms = chtms;
 	}
 	public String getApplBgdt() {
 		return applBgdt;

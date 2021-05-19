@@ -6,12 +6,16 @@
 	<insert id="saveNewKeyHist" parameterType="com.dto.KeyhistinfoTDTO">
 			INSERT INTO `kakao`.`key_hist_info`
 			(`keyBizCfcd`,
+			`chtms`,
 			`keyNum`,
+			`keySeq`,
 			`systemName`,			
 			`systemUsedIP`)
 			VALUES
 			(#{keyBizCfcd},
+			#{chtms},			
 			#{keyNum},
+			#{keySeq},
 			#{systemName},		
 			#{systemUsedIP});
 	</insert>	

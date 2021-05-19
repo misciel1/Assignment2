@@ -5,18 +5,20 @@
 	
 	<insert id="saveNewStringKey" parameterType="com.dto.StringkeypoolinfoTDTO">
 			INSERT INTO kakao.string_key_pool_info
-			(`StrKeyNum`)
+			(`keyNum`,
+			 `keyBizCfcd`)
 			VALUES
-			(#{StrKeyNum})
+			(#{keyNum},
+			 #{keyBizCfcd})
 	</insert>	
 
-	<delete id="clearNewStringKey" >
-			DELETE FROM kakao.string_key_pool_info
+	<delete id="clearNewStringKey" parameterType="String">
+			DELETE FROM kakao.string_key_pool_info WHERE  keyBizCfcd = #{keyBizCfcd}
 			
 	</delete>	
 	
-	<select id="getNewStringKey" parameterType="long" resultType="com.dto.StringkeypoolinfoTDTO">
-			SELECT  * FROM kakao.string_key_pool_info WHERE keySeq >#{keySeq} ORDER BY keySeq LIMIT 1
+	<select id="getNewStringKey" parameterType="com.dto.StringkeypoolinfoTDTO" resultType="com.dto.StringkeypoolinfoTDTO">
+			SELECT  * FROM kakao.string_key_pool_info WHERE keySeq >#{keySeq} AND keyBizCfcd = #{keyBizCfcd} ORDER BY keySeq LIMIT 1
 	</select>	
 	
 </mapper>

@@ -34,7 +34,7 @@ public class KeyAppTest8 {
 		
 			
 			/*문자키KEY생성*/
-		    resultDTO = keyMgmtPC.makeStringKey(3000000);
+		    resultDTO = keyMgmtPC.makeStringKey(3000000,"CL01"); //bizBizCfcd -claim number 
 			
 			/*결과출력*/
 			System.out.println("Response : "+resultDTO.getResponse());

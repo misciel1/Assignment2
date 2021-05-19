@@ -44,7 +44,7 @@ public class KeyNumHandlerUC {
 	
 
 	
-	public List<StringkeypoolinfoTDTO>  generateKey(long uptoCnt) throws Exception{
+	public List<StringkeypoolinfoTDTO>  generateKey(long uptoCnt,String keyBizCfcd) throws Exception{
 
 		// 영문 + 숫자를 조합한 키 생성
 		// 16byte 의 랜럼 수치를 저장
@@ -65,7 +65,15 @@ public class KeyNumHandlerUC {
 	    	
 	    	//Key포멧팅
 	    	key = key.toUpperCase();
-	    	key = key.substring(0, 4)+"-"+key.substring(4, 8)+"-"+key.substring(8, 12)+"-"+key.substring(12, 16);
+	    	
+	    	if("".equals(keyBizCfcd))
+	    	{
+	    		//업무구분코드에 따라 코드 포맷과 자리수 변경가능
+	    	}
+	    	else
+	    	{	
+	    		key = key.substring(0, 4)+"-"+key.substring(4, 8)+"-"+key.substring(8, 12)+"-"+key.substring(12, 16);
+	    	}	
 	    	
 	    	
 	    	
@@ -78,7 +86,8 @@ public class KeyNumHandlerUC {
 	    	else
 	    	{
 	    		StringkeypoolinfoTDTO stringkeypoolinfoTDTO = new StringkeypoolinfoTDTO(); 
-	    		stringkeypoolinfoTDTO.setStrKeyNum(key);
+	    		stringkeypoolinfoTDTO.setKeyNum(key);
+	    		stringkeypoolinfoTDTO.setKeyBizCfcd(keyBizCfcd);
 	    		stringkeypoolinfoPTDTO.add(stringkeypoolinfoTDTO);
 	    		
 	    		uuidMap.put(key, key);

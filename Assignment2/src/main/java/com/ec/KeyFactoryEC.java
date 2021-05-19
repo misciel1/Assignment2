@@ -25,7 +25,7 @@ public class KeyFactoryEC {
 	 * 
 	 *
 	 */	
-	public String getNewKey(String keyBizCfcd) throws KeyExceptionUC{
+	public KeyMstTDTO getNewKey(String keyBizCfcd) throws KeyExceptionUC{
 		
 			
 	
@@ -63,24 +63,35 @@ public class KeyFactoryEC {
 			 
 			 			 
 			 //KEY발급방식
-			 if("01".equals(type)) //문자형 
-			 {
-				 newKey = StringKeyGenEC.makeGenricKey(keyMstTDTO);
-			 }	 
-			 else if("02".equals(type))//숫자형+MysqlKeyGenerator
-			 {
-				 newKey = numericKeyGenEC.makeNumericKey(keyMstTDTO);
-			 }	
-			 else if("03".equals(type))//숫자형+GnericKeyGenerator
-			 {				 
-				 newKey = numericKeyGenEC.makeNumericKey(keyMstTDTO);
-				
-			 }
+			 StringkeypoolinfoTDTO stringkeypoolinfoTDTO = new StringkeypoolinfoTDTO();
+			 long lstKeySeq = 0;
 			 
-			 			 
+			 
+			 if("01".equals(type)) //01;문자형 
+			 {				 
+				 stringkeypoolinfoTDTO = StringKeyGenEC.makeGenricKey(keyMstTDTO);
+				 
+				 
+				 lstKeySeq =  stringkeypoolinfoTDTO.getKeySeq(); 
+			 }	 
+			 else if("02".equals(type)||"03".equals(type))//02 :숫자형+MysqlKeyGenerator   03 :숫자형+GnericKeyGenerator
+			 {
+				 newKey = numericKeyGenEC.makeNumericKey(keyMstTDTO);
+				 
+				 /*Keynum에서 KeySeq값 추출*/
+				 int bIndex =newKey.length()-keyMstTDTO.getKeyLen();
+				 int eIndex = newKey.length();
+				 String stlstKeySeq =  newKey.substring(bIndex, eIndex);
+				 if(stlstKeySeq!=null) lstKeySeq = Long.parseLong(stlstKeySeq);
 				
+			 }	
+			
+			 			 
+			 /*OutDTO셋팅*/
+			 keyMstTDTO.setLstKeyNum(newKey);
+			 keyMstTDTO.setLstKeySeq(lstKeySeq);
 		
-			 return newKey;	
+			 return keyMstTDTO;	
 	}
 	
 	
@@ -178,23 +189,26 @@ public class KeyFactoryEC {
 		SqlSession session = fac.openSession(false);	
 		StringkeypoolinfoDAO mapper = session.getMapper(StringkeypoolinfoDAO.class);
 		
-		/*초기화*/
-		mapper.clearNewStringKey();
+		
 	
 		int cnt = stringkeypoolinfoPTDTO.size();
 		
-		/*저장*/
+		
 		for(int i = 0;cnt>i;i++)
 		{	
 			StringkeypoolinfoTDTO stringkeypoolinfoTDTO = new StringkeypoolinfoTDTO();
 			stringkeypoolinfoTDTO = stringkeypoolinfoPTDTO.get(i);
 			
-						
+			
+			/*초기화*/
+			if(i==0) mapper.clearNewStringKey(stringkeypoolinfoTDTO.getKeyBizCfcd());
+			
+			/*저장*/			
 			mapper.saveNewStringKey (stringkeypoolinfoTDTO);						
 			
 			if(i%5000==0)
 			{
-				if(loggoer.isInfoEnabled()) loggoer.info("StrKeyNum : "+stringkeypoolinfoTDTO.getStrKeyNum()+"   cnt : "+i);
+				if(loggoer.isInfoEnabled()) loggoer.info("StrKeyNum : "+stringkeypoolinfoTDTO.getKeyNum()+"   cnt : "+i);
 				session.commit();
 			}	
 		}

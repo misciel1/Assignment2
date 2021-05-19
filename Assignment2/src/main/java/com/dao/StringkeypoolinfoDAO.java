@@ -8,10 +8,10 @@ public interface StringkeypoolinfoDAO {
 		void saveNewStringKey (final StringkeypoolinfoTDTO stringkeypoolinfoTDTO);
 		
 		/*삭제*/
-		void clearNewStringKey();
+		void clearNewStringKey(String keyBizCfcd);
 		
 		/*문자형Key에서 신규키조회*/
-		StringkeypoolinfoTDTO getNewStringKey (final long keySeq);
+		StringkeypoolinfoTDTO getNewStringKey (final StringkeypoolinfoTDTO stringkeypoolinfoTDTO);
 }
 
 

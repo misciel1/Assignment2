@@ -9,21 +9,35 @@ import com.dto.StringkeypoolinfoTDTO;
 
 public class StringKeyGenEC {
 	
-		public String makeGenricKey(KeyMstTDTO keyMstTDTO){
+		public StringkeypoolinfoTDTO makeGenricKey(KeyMstTDTO keyMstTDTO){
 			
 			KeySessionFactory fac = new KeySessionFactory();
 			SqlSession session = fac.openSession(false);	
 			StringkeypoolinfoDAO mapper = session.getMapper(StringkeypoolinfoDAO.class);
 			
+			String keyBizCfcd =  keyMstTDTO.getKeyBizCfcd();
 			long lstKeySeq = keyMstTDTO.getLstKeySeq();
 			String keyPrifix = keyMstTDTO.getKeyPrifix();
 			
+			
+			
+			
 			StringkeypoolinfoTDTO stringkeypoolinfoTDTO = new StringkeypoolinfoTDTO();
-			stringkeypoolinfoTDTO = mapper.getNewStringKey(lstKeySeq);
+			
+			
+			
+			//StringKey Pool정보에서 조회
+			stringkeypoolinfoTDTO = mapper.getNewStringKey(stringkeypoolinfoTDTO);	
+			
 			
 			//Prifix+문자키(16자리)
-			String newKey = keyPrifix+"-" + stringkeypoolinfoTDTO.getStrKeyNum();
+			String newKey = keyPrifix+"-" + stringkeypoolinfoTDTO.getKeyNum();
 			
-			return newKey;
+			stringkeypoolinfoTDTO.setKeySeq(lstKeySeq);
+			stringkeypoolinfoTDTO.setKeyBizCfcd(keyBizCfcd);
+			stringkeypoolinfoTDTO.setKeyNum(newKey);
+			
+			
+			return stringkeypoolinfoTDTO;
 		}
 }

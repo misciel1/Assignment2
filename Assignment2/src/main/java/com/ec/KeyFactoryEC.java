@@ -71,10 +71,10 @@ public class KeyFactoryEC {
 			 {				 
 				 stringkeypoolinfoTDTO = StringKeyGenEC.makeGenricKey(keyMstTDTO);
 				 
-				 
+				 newKey  =  stringkeypoolinfoTDTO.getKeyNum();
 				 lstKeySeq =  stringkeypoolinfoTDTO.getKeySeq(); 
 			 }	 
-			 else if("02".equals(type)||"03".equals(type))//02 :숫자형+MysqlKeyGenerator   03 :숫자형+GnericKeyGenerator
+			 else if("02".equals(type)||"03".equals(type))   //02 :숫자형+MysqlKeyGenerator   03 :숫자형+GnericKeyGenerator
 			 {
 				 newKey = numericKeyGenEC.makeNumericKey(keyMstTDTO);
 				 

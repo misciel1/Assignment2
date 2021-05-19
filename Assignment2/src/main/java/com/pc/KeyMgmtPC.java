@@ -36,6 +36,7 @@ public class KeyMgmtPC {
 		/*NEW KEY¹ß±Þ*/
 		KeyMstTDTO keyMstTDTO = new KeyMstTDTO();
 		keyMstTDTO = keyFactoryEC.getNewKey(keyBizCfcd);
+		
 		String newKey = keyMstTDTO.getLstKeyNum();
 		String chtms = keyMstTDTO.getChtms();
 		

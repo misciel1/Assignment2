@@ -22,22 +22,23 @@ public class StringKeyGenEC {
 			
 			
 			
-			StringkeypoolinfoTDTO stringkeypoolinfoTDTO = new StringkeypoolinfoTDTO();
-			
+			StringkeypoolinfoTDTO inStringkeypoolinfoTDTO = new StringkeypoolinfoTDTO();
+			StringkeypoolinfoTDTO outStringkeypoolinfoTDTO = new StringkeypoolinfoTDTO();
+			inStringkeypoolinfoTDTO.setKeySeq(lstKeySeq);
+			inStringkeypoolinfoTDTO.setKeyBizCfcd(keyBizCfcd);
 			
 			
 			//StringKey Pool정보에서 조회
-			stringkeypoolinfoTDTO = mapper.getNewStringKey(stringkeypoolinfoTDTO);	
+			outStringkeypoolinfoTDTO = mapper.getNewStringKey(inStringkeypoolinfoTDTO);	
 			
 			
 			//Prifix+문자키(16자리)
-			String newKey = keyPrifix+"-" + stringkeypoolinfoTDTO.getKeyNum();
+			String newKey = keyPrifix+"-" + outStringkeypoolinfoTDTO.getKeyNum();
 			
-			stringkeypoolinfoTDTO.setKeySeq(lstKeySeq);
-			stringkeypoolinfoTDTO.setKeyBizCfcd(keyBizCfcd);
-			stringkeypoolinfoTDTO.setKeyNum(newKey);
+
+			outStringkeypoolinfoTDTO.setKeyNum(newKey);
 			
 			
-			return stringkeypoolinfoTDTO;
+			return outStringkeypoolinfoTDTO;
 		}
 }

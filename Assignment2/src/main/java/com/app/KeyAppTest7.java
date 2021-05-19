@@ -73,6 +73,9 @@ public class KeyAppTest7 implements Runnable {
 	    if(r.nextLong()%2==0) {
 	    	issueNewKey("CT01");
 	    }
+	    else if(r.nextLong()%3==1) {
+	    	issueNewKey("CL01");
+	    }
 	    else
 	    {
 	    	issueNewKey("CT02");

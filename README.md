@@ -103,8 +103,8 @@ KEY_MST만으로 KEY발급이 가능함(단독만으로 운영시 속도에 유�
   - 문자형KEY생성(makeStringKey) : 문자형KEY를 일괄생성
 
 + KEY팩토리EC(KeyFactoryEC) - 업무별 KEY원부테이블의 기준에 따라 각 키유형별 발급함수호출
-+ 문자KEY발급EC(StringKeyGenEC) -  문자형 KEY발급함수
-+ 숫자KEY발급EC(NumericKeyGenEC) - 숫자형 KEY발급함수
++ 문자KEY발급EC(StringKeyGenEC) -  문자형 KEY발급함수.UUID를 통하여 생성후 HashMAP을 통하여 중복체크함
++ 숫자KEY발급EC(NumericKeyGenEC) - 숫자형 KEY발급함수. 두가지 발급방식(MysqlKeyGenerator,GenericKeyGenerator)에 따라 Key번호생성
 + KEY번호핸들러(KeyNumHandlerUC) - 숫자형 KEY일련번호를 KEY길이에 맞게 가공  
 </br>  
 
@@ -134,3 +134,10 @@ KEY_MST만으로 KEY발급이 가능함(단독만으로 운영시 속도에 유�
 </br>  
 
 ## 9. 구현시 고민
++ 실시간 문자KEY생성 방안에 대해 고민 
+  - 발급시 중복체크에 성능문제
+  - 배치프로그램을 통하여 일괄생성후 발급속도에 따라 추가생성이 필요할 것으로 보임
++ MysqlKeyGenerator설계시 고민
+  - 최초 설계시 KEY구조를 KEY접두사+숫자형(문자형)로 정의하여 MysqlKeyGenerator설계시 제약이 많이 발생함
+  - Mysql만의 함수를 사용하기위해 위 KEY구조가 적합하지 않아 일반적인 방식으로 처리함
+

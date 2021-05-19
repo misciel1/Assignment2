@@ -21,13 +21,28 @@
   + 숫자형+MysqlKeyGenerator : 숫자형으로 동일하나 Mysql함수를 활용하여 생성
   
 ## 3. DB구성
+
 ### 3-1. 데이터모델
 ![ERD](https://user-images.githubusercontent.com/84136543/118784212-c997b780-b8ca-11eb-88bf-730368bc60c9.PNG)
-+ 데이터모델
+KEY_MST와 KEY_HIST_INFO는 1:n의 관계를 가짐. STRING_KEY_POOL_INFO는 코드테이블임.
+
 ### 3-2. 테이블
-+ KEY_MST
-+ KEY_HIST_INFO
-+ STRING_KEY_INFO
++ KEY원부(KEY_MST)
+  - KEY업무구분코드(keyBizCfcd) : KEY를 사용하는 업무구분 ex)CT01 : Quote Number 
+  - 변경회차(chtms) : 변경회차, 
+  - 적용시기(applBgdt)  : 적용시작일자
+  - 적용종기(applEnddt) : 적용종료일자
+  - KEY접두사(keyPrifix) : 업무를 대표할수 있는 접두사, KEY의 앞에 위치함  ex)Quote Number :QT21000000001 
+  - KEY상세설명(keyDesc) :
+  - KEY길이(keyLen) :
+  - KEY유형(type) :
+  - 발급구분코드(genCfcd) :
+  - 최종KEY일련번호(lstKeySeq) :
+  - 최종KEY번호(lstKeyNum) :
+   
+   
++ KEY_HIST_INFO(KEY이력정보)
++ STRING_KEY_POOL_INFO(문자키POOL정보)
 
 ## 2. 개발환경
 ## 3. 개발프레임워크 구성

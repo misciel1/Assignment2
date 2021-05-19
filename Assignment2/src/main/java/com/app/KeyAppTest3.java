@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import java.util.List;
 
 import com.dto.UserInfoDTO;
+import com.dto.ResultDTO;
 import com.pc.KeyMgmtPC;
 import com.session.KeySessionFactory;
 import java.net.InetAddress;
@@ -22,21 +23,32 @@ public class KeyAppTest3 {
 		
 
 
-		KeyMgmtPC keyMgmtPC = new KeyMgmtPC();		
-		String newkey = "";
-		
-		System.out.println("#######################################################");
-		System.out.println("    #UNIT TEST3 - make Stringkey set ");
-		System.out.println("     ");
-		System.out.println("#######################################################");				
-		
-		
+			KeyMgmtPC keyMgmtPC = new KeyMgmtPC();		
+			ResultDTO resultDTO = new ResultDTO();
+			String newkey = "";
 			
-			/*문자키KEY생성*/
-			keyMgmtPC.makeStringKey(3000000);
+			System.out.println("#######################################################");
+			System.out.println("    #UNIT TEST1 - get a new key ");
+			System.out.println("    #issue claim nubmer (CL01) ");
+			System.out.println("#######################################################");				
+		
+		
+			/*사용자정보셋팅*/
+		    InetAddress address = InetAddress.getLocalHost();    
+		    String callerNm ="";
+		    callerNm = Thread.currentThread().getStackTrace()[1].getClassName();
+		    callerNm = callerNm+"."+Thread.currentThread().getStackTrace()[1].getMethodName();
+			
+			UserInfoDTO userInfoDTO = new UserInfoDTO();			
+			userInfoDTO.setSystemName(callerNm);
+			userInfoDTO.setSystemUsedIP(address.getHostAddress());		
+			
+			/*KEY발급*/
+			resultDTO = keyMgmtPC.issueNewKey("CL01",userInfoDTO);
 			
 			/*결과출력*/
-			System.out.println("Completed");
+			System.out.println("New key is : "+resultDTO.getKeyNum());
+			System.out.println("Response : "+resultDTO.getResponse());
 		
 		
 	}

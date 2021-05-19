@@ -44,5 +44,12 @@
 			#{lstKeySeq},
 			#{lstKeyNum})
 	</insert>
+	
+	
+	<select id="getNewKeyForMysql" parameterType="String" resultType="String">
+			SELECT LPAD(lstkeySeq+1,keyLen,'0') "newKey"
+			FROM kakao.key_mst 
+            WHERE keyBizCfcd  = #{keyBizCfcd};
+	</select>
 
 </mapper>

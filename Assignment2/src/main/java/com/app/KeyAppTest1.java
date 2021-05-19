@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import java.util.List;
 
 import com.dto.UserInfoDTO;
+import com.dto.ResultDTO;
 import com.pc.KeyMgmtPC;
 import com.session.KeySessionFactory;
 import java.net.InetAddress;
@@ -22,13 +23,14 @@ public class KeyAppTest1 {
 		
 
 
-		KeyMgmtPC keyMgmtPC = new KeyMgmtPC();		
-		String newkey = "";
-		
-		System.out.println("#######################################################");
-		System.out.println("    #UNIT TEST1 - get a new key ");
-		System.out.println("    #issue Quote nubmer (CT01) ");
-		System.out.println("#######################################################");				
+			KeyMgmtPC keyMgmtPC = new KeyMgmtPC();		
+			ResultDTO resultDTO = new ResultDTO();
+			String newkey = "";
+			
+			System.out.println("#######################################################");
+			System.out.println("    #UNIT TEST1 - get a new key ");
+			System.out.println("    #issue Quote nubmer (CT01) -Generic");
+			System.out.println("#######################################################");				
 		
 		
 			/*사용자정보셋팅*/
@@ -42,11 +44,11 @@ public class KeyAppTest1 {
 			userInfoDTO.setSystemUsedIP(address.getHostAddress());		
 			
 			/*KEY발급*/
-			newkey = keyMgmtPC.issueNewKey("CT01",userInfoDTO);
+			resultDTO = keyMgmtPC.issueNewKey("CT01",userInfoDTO);
 			
 			/*결과출력*/
-			System.out.println("New key is : "+newkey);
-			System.out.println("Compeleted");
+			System.out.println("New key is : "+resultDTO.getKeyNum());
+			System.out.println("Response : "+resultDTO.getResponse());
 		
 		
 	}

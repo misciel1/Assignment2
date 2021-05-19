@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import java.util.List;
 
 import com.dto.KeyMstTDTO;
+import com.dto.ResultDTO;
 import com.dto.UserInfoDTO;
 import com.pc.KeyMgmtPC;
 import com.session.KeySessionFactory;
@@ -14,18 +15,19 @@ import java.net.UnknownHostException;
 
 
 
-public class KeyAppTest4 {
+public class KeyAppTest9 {
 	
-	final static Logger loggoer = Logger.getLogger(KeyAppTest4.class);
+	final static Logger loggoer = Logger.getLogger(KeyAppTest9.class);
 	
 	public static void main(String[] args) throws Exception {
 		
 		KeyMgmtPC keyMgmtPC = new KeyMgmtPC();
 		KeyMstTDTO keyMstTDTO = new KeyMstTDTO();
-		String newkey = "";
+		ResultDTO resultDTO = new ResultDTO();
+	
 		
 		System.out.println("#######################################################");
-		System.out.println("    #UNIT TEST4 - rigster a New Key info ");
+		System.out.println("    #UNIT TEST9 - rigster a New Key info ");
 		System.out.println("    # Reinsurance Treaty - Qoata Share");
 		System.out.println("#######################################################");				
 		
@@ -43,10 +45,10 @@ public class KeyAppTest4 {
 		
 		
 		/*신규 KEY-INFO등록*/
-		keyMgmtPC.rigsterNewKeyInfo(keyMstTDTO);
+		resultDTO  = keyMgmtPC.rigsterNewKeyInfo(keyMstTDTO);
 		
 		/*결과출력*/
-		System.out.println("Compeleted");
+		System.out.println("Response : "+resultDTO.getResponse());
 	
 	
 	}

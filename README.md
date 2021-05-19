@@ -114,6 +114,8 @@ KEY_MST만으로 KEY발급이 가능함(단독만으로 운영시 속도에 유�
 
 단위 테스트는 "src\main\java\com\app" 폴더 아래에 있는 파일들을 실행
 
+
+
 제공되는 단위 테스트 파일은 아래와 같음
 
 - KeyAppTest1.java : 신규KEY발급테스트- 숫자형Gneric
@@ -123,7 +125,8 @@ KEY_MST만으로 KEY발급이 가능함(단독만으로 운영시 속도에 유�
 - KeyAppTest8.java : 문자형KEY일괄생성 테스트
 - KeyAppTest9.java : 새로운 KEY정보 등록 테스트
 
-
+![newKey결과](https://user-images.githubusercontent.com/84136543/118820495-46d62300-b8f1-11eb-997a-bba1cd8a9f92.PNG)
+[[]]
 
 ## 7. 빌드 및 실행방법
 + Github의 소스에서 다운로드

@@ -126,7 +126,9 @@ KeyAppTest9.java : 새로운 KEY정보 등록 테스트
 
 
 ## 7. 빌드 및 실행방법
++ Github의 소스에서 다운로드
++ 개발환경을 구성하여 아래 DB백업 설치후 실행
++ [DB백업 링크] https://drive.google.com/file/d/1aQ0rE6xr_UlI_aR71_LkMTTlPO_oPMP3/view?usp=sharing
 
 
-[DB백업 링크] https://drive.google.com/file/d/1aQ0rE6xr_UlI_aR71_LkMTTlPO_oPMP3/view?usp=sharing
 ## 8. 구현시 고민 및 제약

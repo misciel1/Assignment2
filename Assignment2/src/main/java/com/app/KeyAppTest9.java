@@ -32,7 +32,8 @@ public class KeyAppTest9 {
 		System.out.println("#######################################################");				
 		
 		
-		keyMstTDTO.setKeyBizCfcd("RE02");
+		keyMstTDTO.setKeyBizCfcd("RE05");
+		keyMstTDTO.setChtms("000");
 		keyMstTDTO.setApplBgdt("1900-01-01");
 		keyMstTDTO.setApplEnddt("2999-12-31");
 		keyMstTDTO.setKeyDesc("Reinsurance Treaty - Qoata Share");
@@ -44,10 +45,10 @@ public class KeyAppTest9 {
 		keyMstTDTO.setLstKeySeq(0);
 		
 		
-		/*½Å±Ô KEY-INFOµî·Ï*/
+		/*Â½Ã…Â±Ã” KEY-INFOÂµÃ®Â·Ã*/
 		resultDTO  = keyMgmtPC.rigsterNewKeyInfo(keyMstTDTO);
 		
-		/*°á°úÃâ·Â*/
+		/*Â°Ã¡Â°ÃºÃƒÃ¢Â·Ã‚*/
 		System.out.println("Response : "+resultDTO.getResponse());
 	
 	
